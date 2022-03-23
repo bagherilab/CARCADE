@@ -461,8 +461,11 @@ public class Series {
 			// Create constructor by compiling class name.
 			try {
 				if (type.equals("H") || type.equals("C") || type.equals("S")) {
-					Class<?> c = Class.forName("arcade.agent.cell.Tissue" + type + "Cell"); 
-					_popCons[i] = c.getConstructors()[0];
+					Class<?> c = Class.forName("arcade.agent.cell.Tissue" + type + "Cell");
+					for (Constructor<?> cons : c.getConstructors()) {
+						Class<?>[] parameters = cons.getParameterTypes();
+						if (parameters.length == 7) { _popCons[i] = cons; }
+					}
 					_popFrac[i] = ratio;
 				}
 				else if (type.equals("4") || type.equals("8")) { 

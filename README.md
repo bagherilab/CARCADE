@@ -1,22 +1,42 @@
 # Agent-based model of CAR T-cell therapies in dish and tissue contexts
 
-- [Running the model](#running-the-model)
-- [Setup file structure](#setup-file-structure)
-- [`<simulation>` tags](#simulation-tags)
-    + [`<profilers>`](#profilers)
-    + [`<checkpoints>`](#checkpoints)
-- [`<agents>` tags](#agents-tags)
-    + [`<populations>`](#populations)
-    + [`<helpers>`](#helpers)
-- [`<environment>` tags](#environment-tags)
-    + [`<globals>`](#globals)
-    + [`<components>`](#components)
+- **[Code structure overview](#code-structure-overview)**
+- **[Building from source](#building-from-source)**
+- **[Running the model](#running-the-model)**
+- **[Setup file structure](#setup-file-structure)**
+  - [`<simulation>` tags](#simulation-tags)
+      + [`<profilers>`](#profilers)
+      + [`<checkpoints>`](#checkpoints)
+  - [`<agents>` tags](#agents-tags)
+      + [`<populations>`](#populations)
+      + [`<helpers>`](#helpers)
+  - [`<environment>` tags](#environment-tags)
+      + [`<globals>`](#globals)
+      + [`<components>`](#components)
 
----
+## Code structure overview
+
+`carcade.jar` is a compiled jar of the model, with the required library [MASON](https://cs.gmu.edu/~eclab/projects/mason/) and other libraries (listed below) included.
+
+The `src/` directory contains all source files for the model.
+
+The `docs/` directory contains class documentation (`javadoc`), sample input XML files (`sample_input`), and sample output JSON files (`sample_output`). There is also a README file in the docs/ directory with more details on the sample input and output files.
+
+## Building from source
+
+The model can be built from source. The following libraries are required:
+
+- `mason.19.jar`
+- `flatlaf-0.33.jar`
+- `vecmath.jar`
+- `j3dcore.jar`
+- `j3dutils.jar`
 
 ## Running the model
 
 The model can be run either command line or GUI (which can use a 2D rendering).
+
+When using command line, first navigate to the directory holding this file. Then:
 
 ```bash
 java arcade.Main XML [(--vis)] [(-v|--view) VIEW]
@@ -35,8 +55,13 @@ For example, to run the model with setup file `setup.xml` in GUI mode with a 2D 
 ```bash
 java arcade.Main setup.xml --vis --view 2D
 ```
+Note that running the model with visualization (either directly from the arcade.jar or using the --vis flag) is significantly slower than without visualization.
 
----
+You can run also the model from a `.jar` using the `carcade.jar` file. For example, running the simulation with setup file `setup.xml`, without a GUI, and using the `.jar` file:
+
+```bash
+$ java -jar carcade.jar setup.xml
+```
 
 ## Setup file structure
 
@@ -91,8 +116,6 @@ The __environment__ tag describes the coordinate system of the environment. Nest
 
 - `coordinate` = coordinate system for the simulation (`hex` = hexagonal)
 
----
-
 ## `<simulation>` tags
 
 ### `<profilers>`
@@ -142,8 +165,6 @@ __Checkpoints__ save certain parts of the simulation to a `.checkpoint` file, wh
     + `name` = name of the checkpoint file
     + `path` = path to the checkpoint file directory
     + `[day]` = (integer) day that the checkpoint is to be saved (graph checkpoints can only be loaded when the simulation is initialized, i.e. `day = 0`)
-
----
 
 ## `<agents>` tags
 
@@ -211,8 +232,6 @@ __Helpers__ define the various helper agents included in the simulation. Dependi
     + `dose` = (integer) total quantity of CAR T-cells to add to the simulations
     + `ratio` = (decimal:decimal) fraction of CD4+ and CD8+ CAR T-cells, respectively, where fraction for each is multiplied by the dose to determine the total quantity per type, and total fractions across both populations should sum to 1.0
     + `delay` = (integer) minutes before treatment occurs
-
----
 
 ## `<environment>` tags
 
