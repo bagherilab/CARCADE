@@ -25,6 +25,69 @@ import arcade.util.Parameter;
  *        timepoint contains lists of cell locations and parameter values
  *        for each cell</li>
  * </ul>
+ * <p>
+ * The container is formatted as:
+ * <pre>
+ * 		{
+ * 			"seed": (seed),
+ * 			"config": {
+ * 				"class": "(class)",
+ * 				"days": (days),
+ * 				"size": { "radius": (radius), "height": (height), "margin": (margin) },
+ * 				"init": (init)
+ * 				"pops": [
+ * 					[(pop number), "(pop class)", (pop init fraction), (number of pop initiated)],
+ * 					[(pop number), "(pop class)", (pop init fraction), (number of pop initiated)],
+ * 					...
+ * 				]
+ * 			},
+ * 			"helpers": [
+ * 				{ "type": (helper type), "delay": (delay), "radius": (radius of insert if insert helper used), "pops": [[(pop number),(number of pop seeded)],[(pop number),(number of pop seeded)],..]}
+ * 			],
+ * 			"components": [
+ * 				{ "type": (component type), "class": (component class), "interval": (component interval if remodel or degrade class),
+ * 					"specs": {
+ * 						"component_spec_parameter": (component spec parameter value),
+ * 						"component_spec_parameter": (component spec parameter value),
+ * 						...
+ * 					}
+ * 				}
+ * 				...
+ * 			],
+ * 			"parameters": {
+ * 				"globals": {
+ * 					"global_parameter": (global parameter value),
+ * 					"global_parameter": (global parameter value),
+ * 					...
+ * 				},
+ * 				"pops": {
+ * 					"population_parameter": [(pop 0 parameter value), (pop 1 parameter value),...],
+ * 					"population_parameter": [(pop 0 parameter value), (pop 1 parameter value),...],
+ * 					...
+ * 				}
+ * 			},
+ * 			"timepoints": [
+ * 				{
+ * 					"time": (time),
+ * 					"cells": [
+ * 						[[u,v,w,z],[(cell code id), (cell pop number id), (cell state id), (cell location position), (cell volume), (cell age), [( list, of, cell, parameters, ... )]]],
+ * 						[[u,v,w,z],[(cell code id), (cell pop number id), (cell state id), (cell location position), (cell volume), (cell age), [( list, of, cell, parameters, ... )]]],
+ * 						...
+ * 					]
+ * 				},
+ * 				...
+ * 			]
+ * 		}
+ * </pre>
+ * where the list of cell parameters for tissue cells is as follows:
+ * <pre>
+ * 		["NECRO_FRAC", "SENES_FRAC", "ENERGY_THRESHOLD", "MAX_HEIGHT", "ACCURACY", "AFFINITY", "DEATH_AGE_AVG", "DIVISION_POTENTIAL", "META_PREF", "MIGRA_THRESHOLD", "CAR_ANTIGENS", "SELF_TARGETS"]
+ * </pre>
+ * and the list of cell parameters for CAR T-cells is as follows:
+ * <pre>
+ * 		["SENES_FRAC", "PROLI_FRAC", "EXHAU_FRAC", "ANERG_FRAC", "ENERGY_THRESHOLD", "ACCURACY", "DEATH_AGE_AVG", "DIVISION_POTENTIAL_T", "META_PREF", "META_PREF_IL2", "META_PREF_ACTIVE", "GLUC_UPTAKE_RATE",   
+			"GLUC_UPTAKE_RATE_IL2", "GLUC_UPTAKE_RATE_ACTIVE", "MAX_ANTIGEN_BINDING", "CARS", "SELF_RECEPTORS", "CAR_AFFINITY", "SELF_RECEPTOR_AFFINITY", "SELF_ALPHA", "SELF_BETA", "CONTACT_FRAC"]
+ * </pre>
  */
 
 public class ParameterProfiler extends Profiler {

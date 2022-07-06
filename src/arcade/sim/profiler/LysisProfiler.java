@@ -21,6 +21,60 @@ import arcade.sim.*;
  *     <li><strong>{@code timepoints}</strong>: list of timepoints, where each
  *         timepoint contains a list of cells killed at that timepoint</li>
  * </ul>
+ * <p>
+ * The container is formatted as:
+ * <pre>
+ * 		{
+ * 			"seed": (seed),
+ * 			"config": {
+ * 				"class": "(class)",
+ * 				"days": (days),
+ * 				"size": { "radius": (radius), "height": (height), "margin": (margin) },
+ * 				"init": (init)
+ * 				"pops": [
+ * 					[(pop number), "(pop class)", (pop init fraction), (number of pop initiated)],
+ * 					[(pop number), "(pop class)", (pop init fraction), (number of pop initiated)],
+ * 					...
+ * 				]
+ * 			},
+ * 			"helpers": [
+ * 				{ "type": (helper type), "delay": (delay), "radius": (radius of insert if insert helper used), "pops": [[(pop number),(number of pop)],[(pop number),(number of pop)],..]}
+ * 			],
+ * 			"components": [
+ * 				{ "type": (component type), "class": (component class), "interval": (component interval if remodel or degrade class),
+ * 					"specs": {
+ * 						"component_spec_parameter": (component spec parameter value),
+ * 						"component_spec_parameter": (component spec parameter value),
+ * 						...
+ * 					}
+ * 				}
+ * 				...
+ * 			],
+ * 			"parameters": {
+ * 				"globals": {
+ * 					"global_parameter": (global parameter value),
+ * 					"global_parameter": (global parameter value),
+ * 					...
+ * 				},
+ * 				"pops": {
+ * 					"population_parameter": [(pop 0 parameter value), (pop 1 parameter value),...],
+ * 					"population_parameter": [(pop 0 parameter value), (pop 1 parameter value),...],
+ * 					...
+ * 				}
+ * 			},
+ * 			"timepoints": [
+ * 				{
+ * 					"time": (time),
+ * 					"cells": [
+ * 						[(time of cell death), [u,v,w,z], [(cell code id), (cell pop number id), (cell state id), (cell location position), (cell volume), (cell age), [ (list, of, cycle, lengths, ...)]]],
+ * 						[(time of cell death), [u,v,w,z], [(cell code id), (cell pop number id), (cell state id), (cell location position), (cell volume), (cell age), [ (list, of, cycle, lengths, ...)]]],
+ * 						...
+ * 					]
+ * 				},
+ * 				...
+ * 			]
+ * 		}
+ * </pre>
  */
 
 public class LysisProfiler extends Profiler {
