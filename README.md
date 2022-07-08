@@ -20,7 +20,7 @@
 
 The `src/` directory contains all source files for the model.
 
-The `docs/` directory contains class documentation (`javadoc`), sample input XML files (`sample_input`), and sample output JSON files (`sample_output`). There is also a README file in the docs/ directory with more details on the sample input and output files.
+The `docs/` directory contains class documentation (`javadoc`), sample input XML files (`sample_input`), and sample output JSON files (`sample_output`). The documentation can be viewed in a web browser at https://bagherilab.github.io/CARCADE/javadoc/index.html. There is also a README file in the docs/ directory with more details on the sample input and output files.
 
 ## Building from source
 

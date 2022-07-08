@@ -11,7 +11,7 @@ __CAR T-Cell Agent-based Representation of Cells And Dynamic Environments__
 
 ## Class documentation
 
-The `javadoc` directory contains documentation for all classes. To view, open the `javadoc/index.html` file in a web browser.
+The `javadoc` directory contains documentation for all classes. To view, open the `javadoc/index.html` file in a web browser or navigate to https://bagherilab.github.io/CARCADE/javadoc/index.html.
 
 ## Sample input and output
 
